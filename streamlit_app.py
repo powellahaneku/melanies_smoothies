@@ -19,7 +19,7 @@ st.write("The name on your Smoothie will be:", name_on_order)
 
 cnx = st.connection("snowflake") # for SniS version (Streamlit not in Snowflake)
 session = cnx.session() #get_active_session() 
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_OON'))
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 st.dataframe(data=my_dataframe, use_container_width=True)
 st.stop()
 
