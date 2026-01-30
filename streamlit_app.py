@@ -12,8 +12,6 @@ st.write(
 )
 
 
-
-
 name_on_order = st.text_input('Name on Smoothie:')
 st.write("The name on your Smoothie will be:", name_on_order)
 
@@ -21,12 +19,10 @@ cnx = st.connection("snowflake") # for SniS version (Streamlit not in Snowflake)
 session = cnx.session() #get_active_session() 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 st.dataframe(data=my_dataframe, use_container_width=True)
-st.stop()
+
 
 #Convert the snowpark dataframe to a pandas dataframe
 pd_df = my_dataframe.to_pandas()
-# st.dataframe(pd_df)
-# st.stop()
 
 
 
@@ -52,14 +48,12 @@ if ingredients_list:
 my_insert_stmt = """ insert into smoothies.public.orders(ingredients)
             values ('""" + ingredients_string + """','"""+name_on_order+"""')"""
 
-# smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-# sf_df = st.dataframe(smoothiefroot_response.json(),use_container_width=True)
+
 
 st.write(my_insert_stmt)
 st.stop()
 
 
-#st.write(my_insert_stmt)
 time_to_insert = st.button('Submit Order')
 
 if time_to_insert:
