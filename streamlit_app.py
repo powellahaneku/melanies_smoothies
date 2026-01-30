@@ -109,10 +109,14 @@ time_to_insert = st.button('Submit Order')
 if time_to_insert and ingredients_list and name_on_order:
     session.sql(
         """
-        INSERT INTO smoothies.public.orders (ingredients, name_on_order)
+        INSERT INTO smoothies.public.orders (
+            NAME_ON_ORDER,
+            INGREDIENTS
+        )
         VALUES (?, ?)
         """,
-        params=[ingredients_string, name_on_order]
+        params=[name_on_order, ingredients_string]
     ).collect()
 
     st.success('Your Smoothie is ordered!', icon="✅")
+
