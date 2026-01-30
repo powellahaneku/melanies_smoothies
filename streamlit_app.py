@@ -106,10 +106,13 @@ if ingredients_list:
 
 time_to_insert = st.button('Submit Order')
 
+session.sql("USE DATABASE SMOOTHIES").collect()
+session.sql("USE SCHEMA PUBLIC").collect()
+
 if time_to_insert and ingredients_list and name_on_order:
     session.sql(
         """
-        INSERT INTO smoothies.public.orders (
+        INSERT INTO ORDERS (
             NAME_ON_ORDER,
             INGREDIENTS
         )
@@ -118,5 +121,6 @@ if time_to_insert and ingredients_list and name_on_order:
         params=[name_on_order, ingredients_string]
     ).collect()
 
-    st.success('Your Smoothie is ordered!', icon="✅")
+    st.success("Your Smoothie is ordered! 🥤", icon="✅")
+
 
