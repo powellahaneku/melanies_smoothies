@@ -1,6 +1,21 @@
 import streamlit as st
 from snowflake.snowpark.functions import col
 import pandas as pd
+
+
+# Write directly to the app
+st.title(f"Pending Smoothie Orders!:cup_with_straw:")
+st.write(
+  """
+  Choose the fruits you want in your **custin Smoothie**!.
+  """
+)
+
+
+name_on_order = st.text_input('Name on Smoothie:')
+st.write("The name on your Smoothie will be:", name_on_order)
+
+
 # Snowflake connection
 cnx = st.connection("snowflake")
 session = cnx.session()
